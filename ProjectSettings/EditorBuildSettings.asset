@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ConnectionTest.unity
+    path: Assets/TwitchBot/Examples/ConectionTest/ConnectionTest.unity
     guid: 9a07804da4ceabe4596dcc16c35aa64f
   m_configObjects: {}

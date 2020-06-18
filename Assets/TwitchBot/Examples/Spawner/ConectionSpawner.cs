@@ -12,7 +12,19 @@ public class ConectionSpawner : UnityBot
 
     Dictionary<string, GameObject> usersGameObject = new Dictionary<string, GameObject>(); 
 
+    // List spawns
+    [SerializeField] Transform objList;
+    [SerializeField] Transform []spawnList;
+    int i = 1;
+
     void Start()
+    {
+        ConnectionTwitch();
+
+        spawnList = objList.GetComponentsInChildren<Transform>();
+    }
+
+    void ConnectionTwitch()
     {
         commands = new Dictionary<string, BotCommand>();
         commands.Add("!up", new BotCommand((a,b) => 
@@ -31,7 +43,9 @@ public class ConectionSpawner : UnityBot
 
         whenNewChater += (username) => 
 		{	           	
-            var a = Instantiate(spawnPrefab);
+            var a = Instantiate(spawnPrefab, spawnList[i]);
+            i++;
+            
             a.name = username;
             usersGameObject.Add(username.ToLower(), a);
 		};
