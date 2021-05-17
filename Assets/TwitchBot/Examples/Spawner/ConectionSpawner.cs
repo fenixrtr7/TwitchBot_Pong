@@ -14,14 +14,14 @@ public class ConectionSpawner : UnityBot
 
     // List spawns
     [SerializeField] Transform objList;
-    [SerializeField] Transform []spawnList;
-    int i = 1;
+    [SerializeField] Spawn []spawnList;
+    int i = 0;
 
     void Start()
     {
         ConnectionTwitch();
 
-        spawnList = objList.GetComponentsInChildren<Transform>();
+        spawnList = objList.GetComponentsInChildren<Spawn>();
     }
 
     void ConnectionTwitch()
@@ -36,14 +36,28 @@ public class ConectionSpawner : UnityBot
             }
         }));
 
+        commands.Add("!down", new BotCommand((a, b) =>
+        {
+            var username = b["display-name"].ToLower();
+            if (usersGameObject.ContainsKey(username))
+            {
+                usersGameObject[username].transform.position += Vector3.down;
+            }
+        }));
+
         whenNewMessage += (username, message) => Debug.Log($"{username}: {message}");
         whenNewSystemMessage += (message) => {};//Debug.Log($"System: {message}");
         whenDisconnect += () => Debug.Log("Desconexion");
         whenStart += () => Debug.Log("Conexion");
 
         whenNewChater += (username) => 
-		{	           	
-            var a = Instantiate(spawnPrefab, spawnList[i]);
+		{
+            //Debug.Log(spawnList.Length + " Cantidad");
+            if (i >= spawnList.Length)
+                return;
+
+            //Debug.Log("Pasamos");
+            var a = Instantiate(spawnPrefab, spawnList[i].transform);
             i++;
             
             a.name = username;

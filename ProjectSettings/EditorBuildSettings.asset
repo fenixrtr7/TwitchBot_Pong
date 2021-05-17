@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/TwitchBot/Examples/ConectionTest/ConnectionTest.unity
     guid: 9a07804da4ceabe4596dcc16c35aa64f
+  - enabled: 1
+    path: Assets/GamePongTwitch/Scenes/Main.unity
+    guid: 6f80b9295e87f854ba229b5a3ba57942
   m_configObjects: {}
